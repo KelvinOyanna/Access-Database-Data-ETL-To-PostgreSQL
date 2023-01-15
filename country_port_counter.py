@@ -1,5 +1,5 @@
 import pandas as pd
-from etl import get_database_conn
+from util import get_database_conn
 
 # Create database connection
 postgresql_conn = get_database_conn()
@@ -17,10 +17,11 @@ def get_country_port_count():
     where "Load_offload_wharves" = 'Y'
     group by 1
     order by count("Main_port_name") desc
+    limit 1
     '''
     country_port_count_data = pd.read_sql(query, con= postgresql_conn)
     # Write country_port_count_data to postgresql database
     country_port_count_data.to_sql('country_port_count', con= postgresql_conn, if_exists='replace')
-    print('country_port_count_data successfully written to database')
+    print('country_port_count_data successfully written to table in the database')
 
 get_country_port_count()

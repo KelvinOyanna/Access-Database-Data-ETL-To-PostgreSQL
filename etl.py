@@ -1,31 +1,22 @@
 # import needed libraries
 import pandas as pd
 from sqlalchemy import create_engine
-from dotenv import dotenv_values
-dotenv_values()
-
-
-def get_database_conn():
-    # Get database credentials from environment variable
-    config = dict(dotenv_values('.env'))
-    db_user = config.get('DB_USER')
-    db_password = config.get('DB_PASSWORD')
-    db_name = config.get('DB_NAME')
-    port = config.get('PORT')
-    host = config.get('HOST')
-    # Create connection to Postgresql database
-    return create_engine(f'postgresql://{db_user}:{db_password}@{host}:{port}/{db_name}')
+from util import get_database_conn
 
 # Create a connection to the Microsoft Access database file
 access_db_engine = create_engine("access+pyodbc://@wpi_data")
-
 wpi_data_tables = ['WPI Region', 'WPI Import', 'Wpi Data', 'Shelter Afforded LUT', 'Repairs Code LUT', 'Maximum Size Vessel LUT', \
 'Harbor Type LUT', 'Harbor Size LUT', 'Drydock/Marine Railway Code LUT', 'Depth Code LUT', 'Country Codes', 'Country Codes Old']
 
 # Function to load data from access database to postgresql database
 def load_data_to_db():
     '''
-    Function to load data to database
+    This function establish connection to the Microsoft access database file and loads each table
+    in the database to a postgresql database instance.
+
+    Parameter: Does not accept a parameter
+    Return value: Does not return a value. It performs a write operation to the database
+    Return type: None
     '''
     postgres_engine = get_database_conn()
     for table_name in wpi_data_tables:
