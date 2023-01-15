@@ -30,6 +30,7 @@ def create_nearest_port_with_essentials_table():
     nearest_port = ports_with_essentials_sorted[['country', 'port_name', 'port_latitude', 'port_longitude']].head(1)
     # Write data to postgresql database
     nearest_port.to_sql('nearest_port_with_essentials', con= postgresql_conn, if_exists='replace')
-    print('nearest_port_with_essentials data successfully written to table in the database')
+    print('nearest_port_with_essentials data successfully written to a table in the database')
 
-create_nearest_port_with_essentials_table()
+if __name__== '__main__':
+    create_nearest_port_with_essentials_table()

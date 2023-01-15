@@ -18,6 +18,7 @@ def create_jurong_island_nearest_port_table():
     jurong_island_nearest_ports = wpi_data_sorted[['Main_port_name', 'distance_in_meters']].head()
     # Write data to postgresql database
     jurong_island_nearest_ports.to_sql('jurong_island_nearest_ports', con= postgresql_conn, if_exists='replace')
-    print('jurong_island_nearest_ports data successfully written to table in the database')
+    print('jurong_island_nearest_ports data successfully written to a table in the database')
 
-create_jurong_island_nearest_port_table()
+if __name__== '__main__':
+    create_jurong_island_nearest_port_table()
