@@ -15,9 +15,11 @@ def create_jurong_island_nearest_port_table():
         jurong_island_port_cordinates.get('Longitude_degrees')[0], x['Latitude_degrees'], x['Longitude_degrees']), axis= 1)
     # Sort data by distance in ascending order to get the nearest port distance to jurong_island
     wpi_data_sorted = wpi_data.sort_values(by=['distance_in_meters'], ascending= True)
-    jurong_island_nearest_ports = wpi_data_sorted[['Main_port_name', 'distance_in_meters']].head()
+    jurong_island_nearest_port = wpi_data_sorted[['Main_port_name', 'distance_in_meters']].head()
     # Write data to postgresql database
-    jurong_island_nearest_ports.to_sql('jurong_island_nearest_ports', con= postgresql_conn, if_exists='replace')
+    # Rename column
+    jurong_island_nearest_port.rename(columns= {'Main_port_name': 'port_name'}, inplace= True)
+    jurong_island_nearest_port.to_sql('jurong_island_nearest_ports', con= postgresql_conn, if_exists='replace')
     print('jurong_island_nearest_ports data successfully written to a table in the database')
 
 if __name__== '__main__':
