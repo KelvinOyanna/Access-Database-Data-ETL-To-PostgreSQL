@@ -2,6 +2,23 @@
 import pandas as pd
 from sqlalchemy import create_engine
 from util import get_database_conn
+import urllib.request
+import zipfile
+
+def download_data():
+    '''
+    This function download the required data for this assessment and extract into the
+    directory named data withing the project folder.
+    Parameter: Does not accept any parameter
+    Return value: None
+    Return type: None
+    '''
+    url = 'https://msi.nga.mil/api/publications/download?key=16694622/SFH00000/PUB150.ZIP'
+    file_name = url.split("/")[-1]
+    urllib.request.urlretrieve(url, file_name)
+    with zipfile.ZipFile(file_name, 'r') as zip_ref:
+        zip_ref.extractall('data')
+    print("File successfully downloaded and extracted to the directory 'data'.")
 
 # Create a connection to the Microsoft Access database file
 access_db_engine = create_engine("access+pyodbc://@wpi_data")
@@ -26,6 +43,7 @@ def load_data_to_db():
         table_data.to_sql(destination_table_name, con= postgres_engine, if_exists='replace')
     print('Data successfully successfully loaded to posgresql database')
 
+download_data()
 
 # def create_table_relationships():
 #     connection = get_database_conn().raw_connection()
