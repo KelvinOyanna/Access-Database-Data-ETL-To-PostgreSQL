@@ -26,3 +26,5 @@ python3 main.py
 This downloads the required access database file, load data from the file into a postgresql database and create tables based on the questions asked.
 NB: Run the above codes from a shell session in the project directory.
 
+### Output:
+A screen-shot of the SQL output of the created tables can be found in directory 'SQL_Output_Screenshots'
