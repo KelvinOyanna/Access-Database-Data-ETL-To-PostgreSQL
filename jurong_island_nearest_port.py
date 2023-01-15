@@ -23,6 +23,7 @@ def compute_port_distance(latitude_1, longitude_1, latitude_2, longitude_2):
     a = abs(sin(latitude_distance/2)**2 + cos(latitude_1) * cos(latitude_2) * sin(longitude_distance /2)**2)
     c = 2 * atan2(sqrt(a), sqrt(1 - a))
     return earth_radius * c
+
 query = 'select * from wpi_data'
 # Get data from database
 wpi_data = pd.read_sql(query, con= postgresql_conn)
@@ -36,4 +37,5 @@ wpi_data.sort_values(by=['distance_in_meters'], ascending= True)
 jurong_island_nearest_ports = wpi_data[['Main_port_name', 'distance_in_meters']].head()
 # Write data to postgresql database
 jurong_island_nearest_ports.to_sql('jurong_island_nearest_ports', con= postgresql_conn, if_exists='replace')
-print('jurong_island_nearest_ports data written to database')
+print('jurong_island_nearest_ports data successfully written to database')
+
