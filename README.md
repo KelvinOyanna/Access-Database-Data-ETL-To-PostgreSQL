@@ -1,6 +1,6 @@
 # Project Description:
 This repository contains the code, data and resource used to implement a data ingestion pipeline and analyzing the data to draw-out some insight. The project is part of the requirement for Kippa's data analyst interview process.
-On execution, the program downloads the required access database file from: https://msi.nga.mil/Publications/WPI, load the data from the file into a postgresql database and create tables based on the questions asked.
+On execution, the program downloads the required access database file from: https://msi.nga.mil/Publications/WPI, load the data from the file into a Postgresql database instance on Google Cloud Platform and create tables based on the questions asked.
 
 ### Pre-requisite:
 In order to run this code, you first need to create an ODBC Data Source Name (DSN) that points to the downloaded Microsoft Access database file in the folder 'data'. Details on how to creat a DSN can be found [on this link](https://www.microfocus.com/documentation/silk-test/210/en/silktestworkbench-help-en/SILKTEST-413CCBCD-CREATINGDATASOURCEACCESSDATABASE-TSK.html). This establish connection to the database file so we can read data from it.
