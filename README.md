@@ -22,6 +22,7 @@ Create an environment variable file (.env) to store all database credentials/sec
 ### Running the program:
 To execute the code from the command line, run below code:
 python3 main.py 
+
 This downloads the required access database file, load data from the file into a postgresql database and create tables based on the questions asked.
 NB: Run the above codes from a shell session in the project directory.
 
