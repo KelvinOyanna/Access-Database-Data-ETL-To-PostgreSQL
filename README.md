@@ -1,5 +1,5 @@
 # Project Description:
-This repository contains the code, data and resource used to implement a data ingestion pipeline and analyzing the data to draw-out some insight. The project is part of the requirement for Kippa's data analyst interview process.
+This repository contains the code, data and resource used to implement a data ingestion pipeline and analyzing the data to draw-out some insight.
 On execution, the program downloads the required access database file from: https://msi.nga.mil/Publications/WPI, load the data from the file into a Postgresql database instance on Google Cloud Platform and create tables based on the questions asked.
 
 ### Pre-requisite:
